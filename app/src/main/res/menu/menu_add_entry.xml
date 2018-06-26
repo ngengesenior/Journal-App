@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ngenge.journal.CreateEntryActivity">
+    <item
+        android:id="@+id/action_done"
+        android:icon="@android:drawable/ic_menu_gallery"
+        android:title="Done"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_select_image"
+        android:icon="@drawable/ic_done_white_24dp"
+        android:title="Gallery"
+        app:showAsAction="always" />
+
+</menu>
