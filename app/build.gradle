@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     androidTestImplementation 'com.android.support:multidex:1.0.3'
     androidTestImplementation 'com.android.support:multidex-instrumentation:1.0.3'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     //Add retrofits dependency
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.google.code.gson:gson:2.8.5'

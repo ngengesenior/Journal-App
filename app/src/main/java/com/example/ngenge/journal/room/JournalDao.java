@@ -1,5 +1,6 @@
 package com.example.ngenge.journal.room;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -13,7 +14,7 @@ import java.util.List;
 public interface JournalDao {
 
     @Query("SELECT * FROM journal")
-    List<JournalEntry> loadJournals();
+    LiveData<List<JournalEntry>> getJournals();
 
     @Insert
     void insertJournal(JournalEntry journalEntry);
@@ -25,7 +26,7 @@ public interface JournalDao {
     void deleteJournal(JournalEntry journalEntry);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void upateJournal(JournalEntry journalEntry);
+    void updateJournal(JournalEntry journalEntry);
 
 
 }

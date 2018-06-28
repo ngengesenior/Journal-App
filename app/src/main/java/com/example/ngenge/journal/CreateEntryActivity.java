@@ -1,5 +1,6 @@
 package com.example.ngenge.journal;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 
 import com.example.ngenge.journal.room.AppDatabase;
 import com.example.ngenge.journal.room.JournalEntry;
+import com.example.ngenge.journal.room.JournalViewModel;
 
 import java.util.Date;
 
@@ -30,6 +32,7 @@ public class CreateEntryActivity extends AppCompatActivity {
 
     @BindView(R.id.root)
     ConstraintLayout root;
+    private JournalViewModel journalViewModel;
 
 
     @Override
@@ -37,7 +40,9 @@ public class CreateEntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_entry);
         ButterKnife.bind(this);
-        database = AppDatabase.getInstance(getApplicationContext());
+        //database = AppDatabase.getInstance(getApplicationContext());
+        journalViewModel = ViewModelProviders.of(this)
+                .get(JournalViewModel.class);
 
     }
 
@@ -72,7 +77,10 @@ public class CreateEntryActivity extends AppCompatActivity {
 
         JournalEntry journalEntry = new JournalEntry(editTextEntryTitle.getText().toString(),
                 editTextEntry.getText().toString(), date, editTextTags.getText().toString());
-        database.getJournalDao().insertJournal(journalEntry);
+        //database.getJournalDao().insertJournal(journalEntry);
+        journalViewModel.insert(journalEntry);
+        showSnackbar("Item inserted");
+        finish();
 
     }
 
@@ -80,7 +88,7 @@ public class CreateEntryActivity extends AppCompatActivity {
 
 
     private void showSnackbar(String message) {
-        Snackbar.make(root, message, Snackbar.LENGTH_LONG)
+        Snackbar.make(root, message, Snackbar.LENGTH_SHORT)
                 .show();
     }
 
