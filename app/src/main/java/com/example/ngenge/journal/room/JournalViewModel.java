@@ -23,4 +23,6 @@ public class JournalViewModel extends AndroidViewModel {
     public LiveData<List<JournalEntry>> getAllJournalEntries() {
         return allJournalEntries;
     }
+
+
 }

@@ -75,22 +75,46 @@ public class CreateEntryActivity extends AppCompatActivity {
 
         Date date = new Date();
 
+        String title = editTextEntryTitle.getText().toString();
+        String desc  = editTextEntry.getText().toString();
+        String tags = editTextTags.getText().toString();
+
+
         JournalEntry journalEntry = new JournalEntry(editTextEntryTitle.getText().toString(),
                 editTextEntry.getText().toString(), date, editTextTags.getText().toString());
-        //database.getJournalDao().insertJournal(journalEntry);
-        journalViewModel.insert(journalEntry);
-        showSnackbar("Item inserted");
-        finish();
+
+        if(validateField(title) && validateField(desc))
+        {
+            if(tags.trim().isEmpty())
+            {
+                tags = "Notag";
+            }
+
+            JournalEntry entry = new JournalEntry(title,desc,date,tags);
+            journalViewModel.insert(journalEntry);
+            showSnackbar(getString(R.string.str_item_saved));
+            finish();
+
+        }else {
+            showSnackbar(getString(R.string.empty_warning));
+            return;
+        }
+
+
 
     }
 
 
-
+private boolean validateField(String text) {
+    return text.trim().length() > 0;
+}
 
     private void showSnackbar(String message) {
         Snackbar.make(root, message, Snackbar.LENGTH_SHORT)
                 .show();
     }
+
+
 
 
 }

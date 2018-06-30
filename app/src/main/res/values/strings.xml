@@ -3,4 +3,8 @@
     <string name="action_settings">Settings</string>
     <string name="str_select_image">Select Picture</string>
     <string name="str_could_not_select">Could not select image</string>
+    <string name="str_details">Details</string>
+    <string name="empty_warning">Title and details cannot be empty</string>
+    <string name="str_item_saved">Item saved</string>
+    <string name="action_sync">Sync Data</string>
 </resources>

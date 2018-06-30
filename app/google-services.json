@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "742344995816-9r9veo89slnulhkpl6t2jpsomqrt8hdc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ngenge.journal",
+            "certificate_hash": "2ced368ad63ae8307fbde5a23099459eaea53599"
+          }
+        },
+        {
           "client_id": "742344995816-itl5sngma4ikn87cp8552q2poojuvtbm.apps.googleusercontent.com",
           "client_type": 3
         }

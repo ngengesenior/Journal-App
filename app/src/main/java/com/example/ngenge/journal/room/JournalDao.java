@@ -28,5 +28,8 @@ public interface JournalDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateJournal(JournalEntry journalEntry);
 
+    @Query("SELECT * FROM journal WHERE id = :entryId LIMIT 1")
+    JournalEntry getEntryById(int entryId);
+
 
 }

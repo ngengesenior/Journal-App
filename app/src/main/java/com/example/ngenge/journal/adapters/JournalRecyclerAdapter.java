@@ -22,11 +22,23 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
 
     private List<JournalEntry> journalEntryList;
 
+    final private ItemClickListener mListener;
+
+    public interface ItemClickListener{
+        void onItemClicked(int position);
+    }
+
+    public JournalRecyclerAdapter(ItemClickListener listener)
+    {
+        mListener = listener;
+    }
+
     @NonNull
     @Override
     public JournalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.journal_item_layout, parent, false);
+
         return new JournalViewHolder(view);
     }
 
@@ -47,6 +59,10 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         }
     }
 
+    public List<JournalEntry> getJournalEntryList() {
+        return journalEntryList;
+    }
+
     @Override
     public int getItemCount() {
         if (journalEntryList != null) {
@@ -61,7 +77,13 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         notifyDataSetChanged();
     }
 
-    public class JournalViewHolder extends RecyclerView.ViewHolder {
+    public JournalEntry getItemAtPosition(int pos)
+    {
+        return journalEntryList.get(pos);
+    }
+
+
+    public class JournalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
         @BindView(R.id.journal_title)
@@ -76,7 +98,15 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         public JournalViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+
+            mListener.onItemClicked(position);
         }
     }
 }

@@ -5,8 +5,7 @@
     tools:context="com.example.ngenge.journal.CreateEntryActivity">
     <item
         android:id="@+id/action_done"
-        android:icon="@drawable/ic_done_white_24dp"
-        android:title="Gallery"
-        app:showAsAction="always" />
+        android:title="Save"
+        app:showAsAction="ifRoom" />
 
 </menu>

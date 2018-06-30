@@ -11,10 +11,12 @@ public class JournalRepository {
     private LiveData<List<JournalEntry>> allJournalEntries;
 
 
+
     public JournalRepository(Application application) {
         AppDatabase db = AppDatabase.getInstance(application);
         journalDao = db.getJournalDao();
         allJournalEntries = journalDao.getJournals();
+
     }
 
     public LiveData<List<JournalEntry>> getAllJournalEntries() {
@@ -39,4 +41,9 @@ public class JournalRepository {
             return null;
         }
     }
+
+
+
+
+
 }
