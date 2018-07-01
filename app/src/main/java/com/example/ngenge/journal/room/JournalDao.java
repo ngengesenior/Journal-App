@@ -31,5 +31,8 @@ public interface JournalDao {
     @Query("SELECT * FROM journal WHERE id = :entryId LIMIT 1")
     JournalEntry getEntryById(int entryId);
 
+    @Query("DELETE FROM journal")
+    void deleteAll();
+
 
 }

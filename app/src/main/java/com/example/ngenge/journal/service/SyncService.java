@@ -12,6 +12,7 @@ import com.firebase.jobdispatcher.JobService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
@@ -41,31 +42,27 @@ public class SyncService extends JobService {
 
         List<JournalEntry> entryList =repository.getAllJournalEntries()
                 .getValue();
-        if(entryList != null && entryList.size()>0)
+        Toast.makeText(getApplicationContext(),String.valueOf(entryList.size()),
+                Toast.LENGTH_SHORT)
+                .show();
+        if(entryList.size()>0)
         {
+            Toast.makeText(getApplicationContext(),"Entry list is not empty",Toast.LENGTH_SHORT)
+                    .show();
             WriteBatch batch = firebaseFirestore.batch();
+
+
+            CollectionReference reference = firebaseFirestore
+                    .collection("journals/"+userId);
             for (JournalEntry entry:entryList)
             {
-                DocumentReference documentReference = firebaseFirestore
-                        .collection("journals/"+userId)
-                        .document(String.valueOf(entry.getId()));
-                batch.set(documentReference,entry);
+                reference.add(entry);
+
             }
 
-            batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful())
-                    {
-                        Toast.makeText(getApplicationContext(),"Syncing complete",Toast.LENGTH_SHORT)
-                                .show();
-
-                    }
-                    else {
-
-                    }
-                }
-            });
+            Toast.makeText(getApplicationContext(),
+                    "Syncing finished",Toast.LENGTH_SHORT)
+                    .show();
         }
     }
 

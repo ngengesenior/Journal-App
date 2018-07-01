@@ -7,4 +7,7 @@
     <string name="empty_warning">Title and details cannot be empty</string>
     <string name="str_item_saved">Item saved</string>
     <string name="action_sync">Sync Data</string>
+    <string name="clear_all_entries">Clear all entries</string>
+    <string name="clear_all_warning">Are you sure you want to clear all data?</string>
+    <string name="yes">Yes</string>
 </resources>

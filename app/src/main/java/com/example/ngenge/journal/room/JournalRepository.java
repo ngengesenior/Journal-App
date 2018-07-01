@@ -2,6 +2,7 @@ package com.example.ngenge.journal.room;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.arch.persistence.room.Dao;
 import android.os.AsyncTask;
 
 import java.util.List;
@@ -27,6 +28,25 @@ public class JournalRepository {
         new insertTask(journalDao).execute(journalEntry);
     }
 
+
+    /**
+     *
+     * @param entry The entry to remove from database
+     */
+    public void remove(JournalEntry entry)
+    {
+        new removeTask(journalDao)
+                .execute();
+
+    }
+
+    public void deleteAll()
+
+    {
+        new deleteAllTask(journalDao)
+                .execute();
+    }
+
     private static class insertTask extends AsyncTask<JournalEntry, Void, Void> {
 
         private JournalDao asyncTaskDao;
@@ -43,6 +63,37 @@ public class JournalRepository {
     }
 
 
+    private static class removeTask extends AsyncTask<JournalEntry,Void,Void>
+    {
+        private JournalDao removeTaskDao;
+
+        removeTask(JournalDao dao)
+        {
+            removeTaskDao = dao;
+        }
+        @Override
+        protected Void doInBackground(JournalEntry... journalEntries) {
+            removeTaskDao.deleteJournal(journalEntries[0]);
+            return null;
+        }
+    }
+
+
+    private static class deleteAllTask extends AsyncTask<Void,Void,Void>{
+
+        private JournalDao deleteAllAsyncDao;
+
+        deleteAllTask(JournalDao dao)
+        {
+            deleteAllAsyncDao = dao;
+
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            deleteAllAsyncDao.deleteAll();
+            return null;
+        }
+    }
 
 
 

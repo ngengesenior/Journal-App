@@ -77,7 +77,7 @@ public class CreateEntryActivity extends AppCompatActivity {
 
         String title = editTextEntryTitle.getText().toString();
         String desc  = editTextEntry.getText().toString();
-        String tags = editTextTags.getText().toString();
+        StringBuilder tags = new StringBuilder(editTextTags.getText().toString());
 
 
         JournalEntry journalEntry = new JournalEntry(editTextEntryTitle.getText().toString(),
@@ -85,12 +85,19 @@ public class CreateEntryActivity extends AppCompatActivity {
 
         if(validateField(title) && validateField(desc))
         {
-            if(tags.trim().isEmpty())
+            if(tags.toString().trim().length() > 0 && (tags.length() > 0))
             {
-                tags = "Notag";
+                String[] vals = tags.toString().split("\\W");
+                tags = new StringBuilder();
+                for(String s:vals)
+                {
+                    tags.append(s).append(" ");
+
+                }
+
             }
 
-            JournalEntry entry = new JournalEntry(title,desc,date,tags);
+            JournalEntry entry = new JournalEntry(title,desc,date, tags.toString());
             journalViewModel.insert(journalEntry);
             showSnackbar(getString(R.string.str_item_saved));
             finish();

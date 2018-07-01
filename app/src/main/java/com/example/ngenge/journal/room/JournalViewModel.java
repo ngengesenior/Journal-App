@@ -25,4 +25,13 @@ public class JournalViewModel extends AndroidViewModel {
     }
 
 
+    public void remove(JournalEntry entry)
+    {
+        journalRepository.remove(entry);
+    }
+
+    public void deleteAll()
+    {
+        journalRepository.deleteAll();
+    }
 }

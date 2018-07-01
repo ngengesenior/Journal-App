@@ -77,10 +77,17 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         notifyDataSetChanged();
     }
 
-    public JournalEntry getItemAtPosition(int pos)
+    /**
+     *
+     * @param position The position of the entry you want to get
+     * @return JournalEntry
+     */
+    public JournalEntry getEntryAtPosition(int position)
     {
-        return journalEntryList.get(pos);
+        return journalEntryList.get(position);
+
     }
+
 
 
     public class JournalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -99,6 +106,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+
 
         }
 
