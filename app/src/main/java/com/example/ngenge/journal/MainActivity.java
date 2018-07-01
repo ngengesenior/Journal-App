@@ -177,12 +177,14 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerAd
     public void onItemClicked(int position) {
 
         Intent intent = new Intent(this,JournalDetailActivity.class);
-        JournalEntry entry = adapter.getEntryAtPosition(position);
+        JournalEntry entry = adapter.getItemAtPosition(position);
 
         intent.putExtra("DATE",entry.getDate().toString());
         intent.putExtra("DESC",entry.getDescription());
         intent.putExtra("TAGS",entry.getTags());
         intent.putExtra("TITLE",entry.getTitle());
+        intent.putExtra("ID",entry.getId());
+        intent.putExtra("LONG_DATE",entry.getDate().getTime());
         startActivity(intent);
 
     }

@@ -88,7 +88,10 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
 
     }
 
-
+    public JournalEntry getItemAtPosition(int pos)
+    {
+        return journalEntryList.get(pos);
+    }
 
     public class JournalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -113,7 +116,6 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
-
             mListener.onItemClicked(position);
         }
     }

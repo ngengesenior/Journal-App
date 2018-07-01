@@ -6,6 +6,7 @@
     <color name="teal">#009688</color>
     <color name="darkTeal">#00796B</color>
     <color name="accentYellow">#FFEB3B</color>
+    <color name="hintColor">#222222</color>
 
     <color name="purplePrimary">#673AB7</color>
     <color name="purplePrimaryDark">#673AB7</color>

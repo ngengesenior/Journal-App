@@ -1,5 +1,6 @@
 package com.example.ngenge.journal;
 
+import android.app.DatePickerDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -7,16 +8,21 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.ngenge.journal.room.AppDatabase;
 import com.example.ngenge.journal.room.JournalEntry;
 import com.example.ngenge.journal.room.JournalViewModel;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CreateEntryActivity extends AppCompatActivity {
     private AppDatabase database;
@@ -33,6 +39,11 @@ public class CreateEntryActivity extends AppCompatActivity {
     @BindView(R.id.root)
     ConstraintLayout root;
     private JournalViewModel journalViewModel;
+
+    @BindView(R.id.buttonPickDate)
+    Button buttonPickDate;
+    int day_,month_,year_;
+    boolean dateHasBeenPicked = false;
 
 
     @Override
@@ -73,15 +84,11 @@ public class CreateEntryActivity extends AppCompatActivity {
 
     private void submitEntry() {
 
-        Date date = new Date();
 
         String title = editTextEntryTitle.getText().toString();
         String desc  = editTextEntry.getText().toString();
         StringBuilder tags = new StringBuilder(editTextTags.getText().toString());
 
-
-        JournalEntry journalEntry = new JournalEntry(editTextEntryTitle.getText().toString(),
-                editTextEntry.getText().toString(), date, editTextTags.getText().toString());
 
         if(validateField(title) && validateField(desc))
         {
@@ -95,12 +102,31 @@ public class CreateEntryActivity extends AppCompatActivity {
 
                 }
 
+
+
             }
 
-            JournalEntry entry = new JournalEntry(title,desc,date, tags.toString());
-            journalViewModel.insert(journalEntry);
-            showSnackbar(getString(R.string.str_item_saved));
-            finish();
+
+            /**
+             * Ensure that user picks date for this journal
+             */
+            if(dateHasBeenPicked) {
+                Calendar c = Calendar.getInstance();
+
+                Date date = new GregorianCalendar(year_,month_,day_).getTime();
+                JournalEntry journalEntry= new JournalEntry(title, desc, date, tags.toString());
+                journalViewModel.insert(journalEntry);
+                showSnackbar(getString(R.string.str_item_saved));
+                finish();
+
+            }
+
+
+            /**Let them pick a date before proceeding**/
+            else{
+                showSnackbar(getString(R.string.str_pick_date));
+
+            }
 
         }else {
             showSnackbar(getString(R.string.empty_warning));
@@ -122,6 +148,29 @@ private boolean validateField(String text) {
     }
 
 
+    @OnClick(R.id.buttonPickDate)
+    void pickDate()
+    {
+        showDialog();
 
+    }
 
+private void showDialog()
+{
+    Calendar calendar = Calendar.getInstance();
+    day_ = calendar.get(Calendar.DAY_OF_MONTH);
+    month_ = calendar.get(Calendar.MONTH);
+    year_ = calendar.get(Calendar.YEAR);
+
+    DatePickerDialog dialog = new DatePickerDialog(this,
+            new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    buttonPickDate.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+                    dateHasBeenPicked = true;
+                }
+            },day_,month_,year_);
+    dialog.show();
+
+}
 }

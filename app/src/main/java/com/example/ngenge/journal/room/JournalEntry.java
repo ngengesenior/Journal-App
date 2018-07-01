@@ -18,7 +18,7 @@ public class JournalEntry {
     public JournalEntry() {
     }
 
-    @Ignore
+
     public JournalEntry(String title, String description, Date date, String tags) {
         this.title = title;
         this.description = description;
@@ -28,6 +28,7 @@ public class JournalEntry {
 
     }
 
+    @Ignore
     public JournalEntry(int id, String title, String description, Date date, String tags) {
         this.id = id;
         this.title = title;

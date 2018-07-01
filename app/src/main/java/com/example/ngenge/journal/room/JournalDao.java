@@ -16,7 +16,7 @@ public interface JournalDao {
     @Query("SELECT * FROM journal")
     LiveData<List<JournalEntry>> getJournals();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertJournal(JournalEntry journalEntry);
 
     @Insert

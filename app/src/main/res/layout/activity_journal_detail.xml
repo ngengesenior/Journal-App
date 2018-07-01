@@ -19,7 +19,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:fontFamily="@font/roboto_slab_bold"
+        android:fontFamily="@font/special_elite"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -42,29 +42,31 @@
 
     <TextView
         android:id="@+id/textViewDate"
+        style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        style="@style/TextAppearance.AppCompat.Subhead"
+        android:fontFamily="@font/khula"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
         tools:text="12/01/2018" />
 
     <TextView
         android:id="@+id/textViewDescription"
+        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:lineSpacingMultiplier="1.2"
         android:layout_marginTop="32dp"
-        style="@style/TextAppearance.AppCompat.Body1"
-        tools:text="TextViews that are very funny to be like you know are one the hardest concepts to grasp when it comes to the constraintlayout and i intend to do my best the thing is that the layout is too awesome for me to ignore and I cannot"
+        android:fontFamily="@font/poiret_one"
+        android:lineSpacingMultiplier="1.2"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDate"
+        tools:text="TextViews that are very funny to be like you know are one the hardest concepts to grasp when it comes to the constraintlayout and i intend to do my best the thing is that the layout is too awesome for me to ignore and I cannot" />
 
     <TextView
         android:id="@+id/textView5"
@@ -74,6 +76,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
+        android:fontFamily="@font/special_elite"
         android:text="Tags"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.0"
@@ -88,6 +91,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/cormorant_garamond"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"

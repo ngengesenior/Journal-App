@@ -10,4 +10,6 @@
     <string name="clear_all_entries">Clear all entries</string>
     <string name="clear_all_warning">Are you sure you want to clear all data?</string>
     <string name="yes">Yes</string>
+    <string name="next">Next</string>
+    <string name="str_pick_date">Please pick a date</string>
 </resources>

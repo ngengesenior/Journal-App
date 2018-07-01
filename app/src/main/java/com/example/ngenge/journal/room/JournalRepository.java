@@ -36,7 +36,7 @@ public class JournalRepository {
     public void remove(JournalEntry entry)
     {
         new removeTask(journalDao)
-                .execute();
+                .execute(entry);
 
     }
 

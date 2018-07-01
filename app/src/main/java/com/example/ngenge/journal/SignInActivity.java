@@ -76,8 +76,7 @@ public class SignInActivity extends AppCompatActivity {
                             .createSignInIntentBuilder()
                             .setIsSmartLockEnabled(false)
                             .setAvailableProviders(
-                                    Arrays.asList(new AuthUI.IdpConfig.GoogleBuilder().build(),
-                                            new AuthUI.IdpConfig.PhoneBuilder().build())
+                                    Arrays.asList(new AuthUI.IdpConfig.GoogleBuilder().build())
                             ).build(),RC_SIGN
             );
         }

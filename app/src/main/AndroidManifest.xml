@@ -45,12 +45,14 @@
         </activity>
 
         <service
-            android:exported="false"
-            android:name=".service.SyncService">
+            android:name=".service.SyncService"
+            android:exported="false">
             <intent-filter>
-                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
+
+        <activity android:name=".EditEntryActivity"></activity>
     </application>
 
 </manifest>
