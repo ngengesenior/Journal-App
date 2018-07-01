@@ -15,6 +15,7 @@ import android.widget.EditText;
 import com.example.ngenge.journal.room.AppDatabase;
 import com.example.ngenge.journal.room.JournalEntry;
 import com.example.ngenge.journal.room.JournalViewModel;
+import com.example.ngenge.journal.utils.DateUtil;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -51,7 +52,7 @@ public class CreateEntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_entry);
         ButterKnife.bind(this);
-        //database = AppDatabase.getInstance(getApplicationContext());
+
         journalViewModel = ViewModelProviders.of(this)
                 .get(JournalViewModel.class);
 
@@ -94,7 +95,7 @@ public class CreateEntryActivity extends AppCompatActivity {
         {
             if(tags.toString().trim().length() > 0 && (tags.length() > 0))
             {
-                String[] vals = tags.toString().split("\\W");
+                String[] vals = tags.toString().split("\\+W");
                 tags = new StringBuilder();
                 for(String s:vals)
                 {
@@ -111,9 +112,8 @@ public class CreateEntryActivity extends AppCompatActivity {
              * Ensure that user picks date for this journal
              */
             if(dateHasBeenPicked) {
-                Calendar c = Calendar.getInstance();
 
-                Date date = new GregorianCalendar(year_,month_,day_).getTime();
+                Date date = DateUtil.getDate(year_,month_,day_);
                 JournalEntry journalEntry= new JournalEntry(title, desc, date, tags.toString());
                 journalViewModel.insert(journalEntry);
                 showSnackbar(getString(R.string.str_item_saved));

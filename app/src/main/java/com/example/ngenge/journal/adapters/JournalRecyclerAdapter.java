@@ -13,6 +13,7 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.example.ngenge.journal.R;
 import com.example.ngenge.journal.room.JournalEntry;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import butterknife.BindView;
@@ -49,7 +50,8 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         if (journalEntryList != null) {
             JournalEntry currentEntry = journalEntryList.get(position);
             holder.textViewTitle.setText(currentEntry.getTitle());
-            holder.textViewDate.setText(currentEntry.getDate().toString());
+            SimpleDateFormat format = new SimpleDateFormat("EEE, MMM d, ''yyyy");
+            holder.textViewDate.setText(format.format(currentEntry.getDate().getTime()));
             TextDrawable drawable = TextDrawable.builder()
                     .buildRound(currentEntry.getTitle().substring(0, 1),
                             generator.getRandomColor());
