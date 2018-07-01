@@ -1,5 +1,7 @@
 # Journal-App
 The project Journal App is an android application that enables users to pen down their ideas, thoughts and feelings.
+The app lets users to add new entries,modify existing ones and remove an entry by swiping. The user also has the
+option of clearing al entries.
 
 # Getting started
 To get a copy of this project, click on **Fork** at the top right corner of this page and
